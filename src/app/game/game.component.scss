@@ -3,6 +3,7 @@
   height: 100vh;
   max-width: 100%;
   background-image: url("/assets/img/board.jpg");
+  object-fit: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,11 +24,15 @@
     } 
 }
 
-.pick-card{
-    transition: all 125ms ease-in-out;
-    transform: scale(1.5)  ;
-    animation: pick-card-animation 1s ease-in-out;
+.played-card{
+    right: 25px;
       transform: scale(1.1)   translateX(150px) translateY(-150px) rotate(-15deg);
+
+}
+
+.pick-card{
+    animation: pick-card-animation 1s ease-in-out;
+    transform: scale(1.1)   translateX(150px) translateY(-150px) rotate(-15deg);
 }
 
 @keyframes pick-card-animation {
@@ -43,4 +48,11 @@
     100%{
     transform: scale(1.1)   translateX(150px) translateY(-150px) rotate(-15deg);
     }
+}
+
+.player-position{
+    position: absolute;
+    right: 0;
+    
+
 }

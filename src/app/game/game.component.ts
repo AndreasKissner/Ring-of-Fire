@@ -1,36 +1,39 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Game } from '../../models/game';
+import { PlayerComponent } from "../player/player.component";
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule],
+  imports: [CommonModule, PlayerComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',
 })
 export class GameComponent {
   pickCardAnimation = false;
-  game! : Game;
-  currentCard : string | undefined = "";
+  game!: Game;
+  currentCard: string | undefined = '';
 
-  constructor(){
+  constructor() {
     this.newGame();
   }
 
-  newGame(){
-   this.game = new Game();
-   console.log(this.game)
+  newGame() {
+    this.game = new Game();
+    console.log('Game is', this.game);
   }
-  
-  takeCard() {
-    if(!this.pickCardAnimation){
-    this.currentCard = this.game.stack.pop();
-    console.log(this.currentCard);
-    this.pickCardAnimation = true;
 
-    setTimeout(()=>{
-      this.pickCardAnimation = false;
-    },1500)
-  }
+  takeCard() {
+    if (!this.pickCardAnimation) {
+      this.currentCard = this.game.stack.pop();
+      console.log('New card is:  ' + this.currentCard);
+      this.pickCardAnimation = true;
+ 
+      
+      setTimeout(() => {
+        this.game.playedCards.push(this.currentCard!);
+        this.pickCardAnimation = false;
+      }, 1000);
+    }
   }
 }
