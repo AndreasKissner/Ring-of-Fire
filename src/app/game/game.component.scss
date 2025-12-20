@@ -60,5 +60,13 @@
 .btn-add {
 position: absolute;
 right: 32px;
-bottom: 32px;
+bottom: 16px;
+}
+
+.pin-bottom{
+    position: absolute;
+    width: 100%;
+    bottom: 15px;
+    left: 100px;
+    right: 100px;
 }

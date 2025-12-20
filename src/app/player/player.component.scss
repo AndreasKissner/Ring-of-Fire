@@ -3,7 +3,7 @@
     
     display: flex;
   align-items: center;
-  background-color: orange;
+  background-color: rgba(141, 137, 131, 0.705);
   border-bottom-left-radius: 30px ;
   border-top-left-radius:30px ;
   span {
@@ -15,9 +15,13 @@
 
   img {
   margin-left: 5px;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     border-radius: 100%;
   }
+}
+
+.player-active{
+  background-color: rgb(226, 169, 13);
 }
