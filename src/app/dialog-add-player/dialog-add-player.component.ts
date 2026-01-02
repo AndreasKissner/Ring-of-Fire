@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatDialog,
@@ -27,9 +27,10 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './dialog-add-player.component.scss',
 })
 export class DialogAddPlayerComponent {
+
   name: string = '';
 
-    readonly dialogRef = inject(MatDialogRef<DialogAddPlayerComponent>);
+  readonly dialogRef = inject(MatDialogRef<DialogAddPlayerComponent>);
   constructor() {}
   onNoClick() {
        this.dialogRef.close();

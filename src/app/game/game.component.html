@@ -1,35 +1,41 @@
-@for(player of game.players; track player; let i = $index){
-<app-player [name]="player" class="player-position" [ngStyle]="{'top.px': 100 + (i * 70)}"
-    [playerActive]="i == game.currentPlayer" style="top: 80px"></app-player>
-}
+@if (game) {
+<div class="field"
+    style="background-image: url('assets/img/board.jpg'); background-size: cover; background-position: center;">
 
+    @for(player of game.players; track player; let i = $index){
+    <app-player [name]="player" class="player-position hide-mobile" [ngStyle]="{'top.px': 100 + (i * 70)}"
+        [playerActive]="i == game.currentPlayer">
+    </app-player>
+    }
 
-<div class="field">
+<div class="scroll-container  hide-desktop">
+     @for(player of game.players; track player; let i = $index){
+    <app-player-mobile [name]="player" 
+        [playerActive]="i == game.currentPlayer">
+    </app-player-mobile>
+    }
+</div>
     <div class="card-stack">
-        <!-- Card Stack -->
         @for (c of [0, 1, 2, 3, 4]; track c; let i = $index) {
         <img [ngStyle]="{ 'right.px': i * 5 }" src="assets/img/cards/card_cover.png" alt="" />
         }
 
         <img (click)="takeCard()" class="top-card" style="right: 30px" src="assets/img/cards/card_cover.png" alt="" />
 
-        <!-- Stack for played card -->
         @for (card of game.playedCards; track card; let i = $index) {
         <img [src]="'assets/img/cards/' + card + '.png'" class="played-card" alt="" />
         }
 
-        <!-- Current card animation -->
-        @if (pickCardAnimation) {
-        <img (click)="takeCard()" class="pick-card" style="right: 25px"
-            [src]="'assets/img/cards/' + currentCard + '.png'" alt="" />
+        @if (game.pickCardAnimation) {
+        <img (click)="takeCard()" class="pick-card" style="right: 50px"
+            [src]="'assets/img/cards/' + game.currentCard + '.png'" alt="" />
         }
     </div>
 
+    <app-game-info [card]="game.currentCard" class="pin-bottom"></app-game-info>
 
-    <app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
-
-    <button class="btn-add" (click)="openDialog()" matFab aria-label="Example icon button with a delete icon">
+    <button class="btn-add" (click)="openDialog()" matFab>
         <mat-icon>add</mat-icon>
     </button>
-
 </div>
+}
